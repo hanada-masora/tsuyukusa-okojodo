@@ -66,3 +66,93 @@ footer {
   text-decoration: underline;
 }
 
+/* =========================
+   Top Page
+========================= */
+
+/* 共通セクション余白 */
+section {
+  margin-block: 3rem;
+}
+
+/* ---------- Hero ---------- */
+.welcome {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.welcome h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome .tagline {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* ---------- Stories ---------- */
+.top-stories p {
+  margin-block: 0.5rem;
+}
+
+/* ---------- Works ---------- */
+.top-works .work-links {
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.top-works .work-links li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  text-decoration: none;
+}
+
+/* ---------- News ---------- */
+.news ul {
+  list-style: none;
+  padding: 0;
+}
+
+/*.news li {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+}*/
+
+/* ---------- Divider ---------- */
+.top-stories, .news {
+  border-top: 1px dashed #ccc;
+  padding-top: 1.7rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .site-nav ul {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+}
+
+

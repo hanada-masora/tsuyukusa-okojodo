@@ -6,6 +6,45 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	title="トップ｜露草おこじょ堂"
  	indexable={true}
 >
-  <h2>Welcome</h2>
-  <p>創作物をまとめる個人サイトです。</p>
+
+<section class="welcome">
+  <h2>露草おこじょ堂</h2>
+  <p class="tagline">
+  	創作物（オリジナル）を載せている個人サイトです。
+	<br>現在準備中……🖊</p>
+</section>
+
+<section class="top-stories">
+    <h2>Stories</h2>
+    <p>
+      物語の一覧はこちら
+    </p>
+    <p>
+      <a href="/stories/">⇒ 物語を見る</a>
+    </p>
+  </section>
+
+<section class="top-works">
+    <h2>Works</h2>
+	<p>他、単発含む創作物はこちら</p>
+    <ul class="work-links">
+      <li><a href="/illust/">Illust</a></li>
+      <li><a href="/comic/">Comic</a></li>
+      <li><a href="/novel/">Novel</a></li>
+    </ul>
+  </section>
+
+<section class="news">
+  <h2>News</h2>
+  <ul>
+  <!--
+    <li>
+      <time datetime="yyyy-mm-dd">yyyy.mm.dd</time>
+      <a href="/news/yyyy-mm-dd/">サイトを公開しました</a>
+    </li>
+	-->
+  </ul>
+  <p><a href="/news/">⇒ 過去のお知らせ</a></p>
+</section>
+  
 </BaseLayout>
