@@ -1,0 +1,39 @@
+---
+import "../styles/global.css";
+
+const { title = "露草おこじょ堂" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <h1 class="site-title">
+        <a href="/">露草おこじょ堂</a>
+      </h1>
+
+      <nav class="site-nav">
+        <ul>
+		  <li><a href="/about/">About</a></li>
+          <li><a href="/illust/">Illust</a></li>
+          <li><a href="/comic/">Comic</a></li>
+          <li><a href="/novel/">Novel</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <small>© {new Date().getFullYear()} HanadaMasora</small>
+    </footer>
+  </body>
+</html>
