@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Works">
+  <h2>Works</h2>
+  <p class="works-lead">
+    本サイトのすべての創作物をまとめています。
+    <br>順次追加中。。。
+  </p>
+
+  <div class="works-grid">
+    <!-- 作品カードをここに追加 -->
+    <article class="card work-card"> 
+        <a href="/works/example/">
+            <img src="/images/works/example.jpg" alt="">
+            <h3>作品タイトル</h3>
+            <p class="work-type">Illust</p>
+            <span class="work-series">Series1</span>
+        </a>
+    </article>
+
+  </div>
+</BaseLayout>
