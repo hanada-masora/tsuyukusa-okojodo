@@ -1,7 +1,9 @@
 ---
 import "../styles/global.css";
-
-const { title = "露草おこじょ堂" } = Astro.props;
+const {
+	title = "露草おこじょ堂",
+	indexable = false, // ★ デフォルトは非公開
+ } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -10,6 +12,11 @@ const { title = "露草おこじょ堂" } = Astro.props;
     <meta charset="utf-8" />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+	 {indexable ? (
+      <meta name="robots" content="index, follow" />
+    ) : (
+      <meta name="robots" content="noindex, nofollow" />
+    )}
   </head>
 
   <body>
