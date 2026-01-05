@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import WorkDetail from "@/components/WorkDetail.astro";
-import { getEntryBySlug } from "astro:content";
+import { getEntry } from "astro:content";
 
-const entry = await getEntryBySlug("novels", "trillium");
+const entry = await getEntry("novels", "trillium");
 
 function convertRuby(text) {
   return text.replace(
