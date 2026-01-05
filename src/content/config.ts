@@ -8,7 +8,7 @@ export const collections = {
       title: z.string(),
       type: z.string(),
       series: z.string().optional(),
-      published: z.string().optional(),
+      published: z.date().optional(),
     }),
   }),
 };
