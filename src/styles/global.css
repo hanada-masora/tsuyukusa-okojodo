@@ -12,6 +12,12 @@ body {
   color: #222;
 }
 
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+
 /* レイアウト */
 header {
   padding: 3rem 1rem;
@@ -22,6 +28,10 @@ main {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;
+}
+
+body.home main {
+  padding-top: 0;
 }
 
 footer {
@@ -36,7 +46,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 1rem;
+  padding: 0.5rem 1rem;
   border-bottom: 1px solid #ddd;
   background-color: #dff2fc;
 }
@@ -49,6 +59,11 @@ footer {
 .site-title a {
   text-decoration: none;
   color: inherit;
+}
+
+.site-header img {
+  height: 64px;
+  width: auto;
 }
 
 .site-nav ul {
@@ -78,6 +93,20 @@ section {
 }
 
 /* ---------- Hero ---------- */
+.hero {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: 0;
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
 .welcome {
   text-align: center;
   margin-top: 4rem;
@@ -109,8 +138,13 @@ section {
 .work-links li a {
   display: block;
   padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   text-decoration: none;
+  border-radius: 8px;
+}
+
+.work-links li a:active {
+  background-color: rgba(0,0,0,.05);
 }
 
 /* ---------- News ---------- */
@@ -141,7 +175,7 @@ section {
 }
 
 .card {
-  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid rgba(0,0,0,.3);
   border-radius: 8px;
 }
 
@@ -175,10 +209,6 @@ section {
   margin-left: 0.5rem;
 }
 
-/* =========================
-   Stories Page
-========================= */
-
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .site-header {
@@ -207,8 +237,10 @@ section {
 
 @media (hover: hover) {
   .card a:hover {
-    background-color: rgba(0,0,0,.02);
+    background-color: rgba(0,0,0,.03);
+  }
+
+  .work-links li a:hover {
+    background-color: rgba(0,0,0,.03);
   }
 }
-
-

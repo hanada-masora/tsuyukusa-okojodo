@@ -1,0 +1,49 @@
+---
+/*
+  props:
+  title, type, series?, published?
+*/
+import "../styles/work.css";
+const {
+  title,
+  type,
+  series = null,
+  published = null,
+} = Astro.props;
+---
+
+<article class="work-detail">
+
+  <header class="work-header">
+    <h1>{title}</h1>
+  </header>
+
+  <div class="work-content">
+    <slot />
+  </div>
+
+  <footer class="work-meta">
+    <p class="work-type">{type}</p>
+
+    {series && <p class="work-series">Series: {series}</p>}
+    {published && <time datetime={published}>{published}</time>}
+  </footer>
+
+  <nav class="work-nav">
+    <button type="button" onclick="goBack()">← 戻る</button>
+  </nav>
+
+  <script is:inline>
+  console.log("script loaded");
+
+  function goBack() {
+    console.log("goBack called");
+
+    if (history.length > 1) {
+      history.back();
+    } else {
+      location.href = "/works/";
+    }
+  }
+</script>
+</article>

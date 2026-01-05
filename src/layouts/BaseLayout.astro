@@ -20,15 +20,13 @@ const {
 	{indexable ? (
       <meta name="robots" content="index, follow" />
      ) : (
-      <meta name="robots" content="noindex, nofollow" />
+      <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
     )}
   </head>
 
-  <body>
+  <body class={Astro.url.pathname === "/" ? "home" : ""} oncontextmenu="return false;">
     <header class="site-header">
-      <h1 class="site-title">
-        <a href="/">露草おこじょ堂</a>
-      </h1>
+        <a href="/"><img src="/favicon.png"></a>
 
       <nav class="site-nav">
         <ul>

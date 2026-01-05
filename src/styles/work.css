@@ -1,0 +1,101 @@
+/* =========================
+   Work Detail Layout
+   ========================= */
+
+.work-detail {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+/* タイトル */
+.work-header h1 {
+  font-size: 1.6rem;
+  font-weight: normal;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+/* 作品本体 */
+.work-content {
+  margin-bottom: 32px;
+}
+
+/* 画像（イラスト・漫画共通） */
+.work-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* 小説本文 */
+.novel-body {
+  max-width: 42rem;
+  margin: 0 auto;
+  white-space: pre-wrap;
+  line-height: 2;
+}
+
+.novel-body p {
+  margin: 1.5em 0;
+}
+
+.novel-body ruby {
+  ruby-position: over;
+}
+
+.novel-body rt {
+  font-size: 0.5em;
+  line-height: 1;
+}
+
+/* 最初の段落用：全角スペース1字を補う */
+.novel-body::before {
+  content: "　";
+}
+
+/* メタ情報 */
+.work-meta {
+  border-top: 1px solid rgba(0,0,0,.2);
+  padding-top: 12px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.work-meta p,
+.work-meta time {
+  margin: 4px 0;
+}
+
+/* ナビゲーション */
+.work-nav {
+  margin-top: 32px;
+}
+
+.work-nav button {
+  background: none;
+  border: 1px solid rgba(0,0,0,.3);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* タップ時の反応（スマホ最重要） */
+.work-nav button:active {
+  background-color: rgba(0,0,0,.05);
+}
+
+/* PC hover は控えめに */
+@media (hover: hover) {
+  .work-nav button:hover {
+    background-color: rgba(0,0,0,.03);
+  }
+}
+
+@media (max-width: 600px) {
+  .novel-body {
+    padding: 0 1rem;
+  }
+}

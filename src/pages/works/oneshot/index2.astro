@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import WorkDetail from "@/components/WorkDetail.astro";
+import { getEntryBySlug } from "astro:content";
+
+const entry = await getEntryBySlug("novels", "filename");
+
+function convertRuby(text) {
+  return text.replace(
+    /｜(.+?)《(.+?)》/g,
+    "<ruby>$1<rt>$2</rt></ruby>"
+  );
+}
+
+---
+
+<BaseLayout title={entry.data.title}>
+  <WorkDetail
+    title={entry.data.title}
+    type={entry.data.type}
+    series={entry.data.series}
+    published={entry.data.published}
+  >
+ <div
+  class="novel-body"
+  set:html={convertRuby(entry.body)}
+></div>
+
+  </WorkDetail>
+</BaseLayout>
