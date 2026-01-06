@@ -4,6 +4,9 @@ const {
 	title = "露草おこじょ堂",
 	indexable = false, // ★ デフォルトは非公開
  } = Astro.props;
+ const description = "創作物（オリジナル）を載せている個人サイトです。";
+ const image = "https://tsuyukusa-okojodo.pages.dev/ogp.png";
+ const url = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!DOCTYPE html>
@@ -11,11 +14,24 @@ const {
   <head>
     <meta charset="utf-8" />
     <title>{title}</title>
-	<!-- Favicons -->
-	<link rel="icon" sizes="32x32" href="/favicon.png">
-  <link rel="icon" sizes="16x16" href="/favicon.png">
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- OGP -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={image} />
+
+    <!-- X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <!-- Favicons -->
+    <link rel="icon" sizes="32x32" href="/favicon.png">
+    <link rel="icon" sizes="16x16" href="/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 	{indexable ? (
       <meta name="robots" content="index, follow" />
