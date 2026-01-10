@@ -80,6 +80,7 @@
   border-radius: 999px;
   font-size: 0.9rem;
   cursor: pointer;
+   transition: background-color 0.2s;
 }
 
 /* タップ時の反応（スマホ最重要） */
@@ -90,7 +91,7 @@
 /* PC hover は控えめに */
 @media (hover: hover) {
   .work-nav button:hover {
-    background-color: rgba(0,0,0,.03);
+    background-color: rgba(0,0,0,.04);
   }
 }
 

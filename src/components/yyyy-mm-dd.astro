@@ -1,15 +1,24 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// ファイル名から日付を取得
+const filename = Astro.url.pathname.split("/").pop();
+const date = filename?.replace(".astro", "");
+
+export const frontmatter = {
+  title: "サイト公開のお知らせ",
+  category: "お知らせ"
+};
 ---
 
 <BaseLayout title="サイト公開のお知らせ｜露草おこじょ堂">
   <article class="news-article">
     <h2>サイト公開のお知らせ</h2>
 
-    <time datetime="2025-01-01">2025-01-01</time>
+    <time datetime={date}>{date}</time>
 
     <p>
-      露草おこじょ堂のサイトを公開しました。
+      
     </p>
   </article>
 </BaseLayout>

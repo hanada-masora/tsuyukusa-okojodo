@@ -1,0 +1,42 @@
+.news-list {
+  list-style: none;
+  padding: 1rem;
+  background-color: aliceblue;
+}
+
+.news-list li {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.news-list time {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.news-list a{
+  text-decoration: none;
+  font-weight: 900;
+}
+
+/* カテゴリ別（控えめ） */
+.news-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 0 0.5rem;
+  margin-bottom: 0.15rem;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.25);
+  white-space: nowrap;
+}
+.news-tag.is-お知らせ {
+  background: #FCD4D5;
+}
+
+.news-tag.is-サイト更新 {
+  background: #c1e4e9;
+}
+

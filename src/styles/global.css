@@ -130,17 +130,21 @@ section {
 /* ---------- link ---------- */
 .work-links {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 0;
   list-style: none;
 }
 
 .work-links li a {
   display: block;
+  width: 6rem;
+  text-align: center;
+  font-weight: 900;
   padding: 0.5rem 1rem;
   border: 1px solid #bbb;
   text-decoration: none;
   border-radius: 8px;
+  transition: background-color 0.2s;
 }
 
 .work-links li a:active {
@@ -153,14 +157,30 @@ section {
   padding: 0;
 }
 
-/*.news li {
+.news li {
   display: flex;
-  gap: 1rem;
-  font-size: 0.9rem;
-}*/
+  gap: 1.5rem;
+}
+
+.news a {
+  font-weight: 900;
+}
+
+.news-more {
+    margin-top: 1.75rem;
+}
+.news-more a{
+  text-align: center;
+  font-weight: 900;
+  padding: 0.5rem 1rem;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  text-decoration: none;
+}
 
 /* ---------- Divider ---------- */
-.top-stories, .news {
+.top-stories, .news, .divider{
   border-top: 1px dashed #ccc;
   padding-top: 1.7rem;
 }
@@ -175,7 +195,7 @@ section {
 }
 
 .card {
-  border: 1px solid rgba(0,0,0,.3);
+  border: 1px solid #ccc;
   border-radius: 8px;
 }
 
@@ -184,6 +204,7 @@ section {
   text-decoration: none;
   color: inherit;
   padding: 16px;
+   transition: background-color 0.2s;
 }
 
 .card a:active {
@@ -196,9 +217,10 @@ section {
 }
 
 .work-type {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #666;
   margin-left: 0.6rem;
+  margin-top: 0;
 }
 
 .work-series {
@@ -208,7 +230,18 @@ section {
   padding: 0.1rem 0.4rem;
   margin-left: 0.5rem;
 }
+/* =========================
+   story Page
+========================= */
 
+.story-meta {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+/* =========================
+   media
+========================= */
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .site-header {
@@ -236,11 +269,10 @@ section {
 }
 
 @media (hover: hover) {
-  .card a:hover {
-    background-color: rgba(0,0,0,.03);
-  }
-
-  .work-links li a:hover {
-    background-color: rgba(0,0,0,.03);
+  .work-links li a:hover,
+  .card a:hover,
+  .news-more a:hover
+   {
+    background-color: rgba(0,0,0,.04);
   }
 }

@@ -1,0 +1,36 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import WorkDetail from "@/components/WorkDetail.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const works = await getCollection("works");
+  const paths = works
+    .filter(w => !w.data.series) // 単発作品のみ
+    .map(w => ({
+      params: { slug: w.slug }, // 文字列
+    }));
+  return paths;
+}
+
+// ページ本体
+const { slug } = Astro.params;
+const works = await getCollection("works");
+const work = works.find(w => w.slug === slug && !w.data.series);
+
+if (!work) {
+  throw new Error(`Work not found: ${slug}`);
+}
+
+const { data, body } = work;
+---
+<BaseLayout title={data.title}>
+  <WorkDetail
+    title={data.title}
+    type={data.type}
+    series={data.series}
+    published={data.published}
+    body={body}
+    images={data.images}
+  />
+</BaseLayout>

@@ -4,12 +4,12 @@ import { getCollection } from "astro:content";
 
 const works = await getCollection("works");
 
-// type が "novel" の作品だけ抽出
-const illustWorks = works.filter(w => w.data.type === "novel");
+// type が "illust" の作品だけ抽出
+const illustWorks = works.filter(w => w.data.type === "illust" && w.data.series?.id === "maison-flora");
 ---
-<BaseLayout title="Novel｜露草おこじょ堂">
-  <h2>Novel</h2>
-  <p>小説の一覧です</p>
+<BaseLayout title="Illust｜露草おこじょ堂">
+  <h2>Illust</h2>
+  <p>フローラ荘のイラスト集です</p>
   <div class="works-grid">
     {illustWorks.map(work => (
       <article class="card work-card">
@@ -17,8 +17,6 @@ const illustWorks = works.filter(w => w.data.type === "novel");
           <img
             src={work.data.thumbnail || "/images/common/noimage.png"}
             alt={work.data.title}
-            loading="lazy"
-            decoding="async"
           />
           <h3>{work.data.title}</h3>
           <p class="work-type">{work.data.type}</p>

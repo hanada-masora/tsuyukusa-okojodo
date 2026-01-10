@@ -1,13 +1,41 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
----
+import "@/styles/news.css"
 
+// news ディレクトリ内の astro ファイルを取得
+const modules = import.meta.glob("./*.astro", { eager: true });
+
+// index.astro 自身を除外
+const entries = Object.entries(modules).filter(
+  ([path]) => !path.endsWith("index.astro")
+);
+
+// ファイル名 → 日付 → 情報化
+const news = entries
+  .map(([path, mod]) => {
+    const filename = path.split("/").pop().replace(".astro", "");
+    return {
+      url: `/news/${filename}/`,
+      date: filename,
+      title: mod.frontmatter?.title ?? "お知らせ",
+      category: mod.frontmatter?.category ?? "お知らせ",
+    };
+  })
+  // 日付降順
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+---
 <BaseLayout title="News｜露草おこじょ堂">
   <h2>News</h2>
 
   <ul class="news-list">
-   <li>
-      <time datetime="2026-01-05">2026-01-05</time>
-      <a href="/news/2026-01-05/">サイトを公開しました</a>
-    </li>
+    {news.map(item => (
+      <li>
+        <time datetime={item.date}>{item.date}</time>
+        <span class={`news-tag is-${item.category}`}>
+          {item.category}
+        </span>
+        <a href={item.url}>{item.title}</a>
+      </li>
+    ))}
+  </ul>
 </BaseLayout>

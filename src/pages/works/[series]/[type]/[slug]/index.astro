@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import WorkDetail from "@/components/WorkDetail.astro";
+import { getCollection } from "astro:content";
+
+// ---------------------------
+// getStaticPaths
+// ---------------------------
+export async function getStaticPaths() {
+  const works = await getCollection("works");
+
+  const paths = works
+    .filter(w => w.data.series) // シリーズ作品のみ
+    .map(w => ({
+      params: {
+        series: w.data.series.id,      // "maison-flora"
+        type: w.data.type,             // "illust"
+        slug: w.slug.split("/").pop(), // "kuzu1"（ファイル名だけ）
+      },
+    }));
+
+  console.log("Paths for series:", paths); // ターミナルで確認
+  return paths; // 配列で返す
+}
+
+// ---------------------------
+// ページ本体
+// ---------------------------
+const { series, type, slug } = Astro.params; // URL から直接取得
+
+const works = await getCollection("works");
+const work = works.find(
+  w =>
+    w.data.series?.id === series &&
+    w.data.type === type &&
+    w.slug.endsWith(slug) // サブディレクトリ込み slug に対応
+);
+
+if (!work) {
+  throw new Error(`Work not found: ${series}/${type}/${slug}`);
+}
+
+const { data, body } = work;
+---
+<BaseLayout title={data.title}>
+  <WorkDetail
+    title={data.title}
+    type={data.type}
+    series={data.series}
+    published={data.published}
+    body={body}
+    images={data.images}
+  />
+</BaseLayout>

@@ -1,17 +1,32 @@
 ---
 /*
   props:
-  title, type, series?, published?
+  title, type, series?, published?, body?, images?
 */
 import "../styles/work.css";
+
 const {
   title,
   type,
   series = null,
   published = null,
+  body = "",
+  images = [],
 } = Astro.props;
----
 
+// 日付表示
+const publishedText = published
+  ? published.toISOString().slice(0, 10)
+  : "";
+
+// Novel 用ルビ変換関数
+function convertRuby(text: string) {
+  return text.replace(/｜(.+?)《(.+?)》/g, "<ruby>$1<rt>$2</rt></ruby>");
+}
+
+// body を変換済み HTML に
+const htmlBody = type === "Novel" ? convertRuby(body) : body;
+---
 <article class="work-detail">
 
   <header class="work-header">
@@ -19,14 +34,35 @@ const {
   </header>
 
   <div class="work-content">
+    <!-- Novel の場合は自動でルビ変換して表示 -->
+    {type === "novel" && (
+      <div class="novel-body" set:html={htmlBody} />
+    )}
+
+    <!-- Illust / Comic の場合は images 配列を map して描画 -->
+    {type === "illust" && images?.map((src) => (
+      <img src={src} alt={title} />
+    ))}
+
+    {type === "comic" && images?.map((src) => (
+      <div class="comic-pages"><img src={src} alt={title} /></div>
+    ))}
+
+    <!-- slot はそのまま残す -->
     <slot />
   </div>
 
   <footer class="work-meta">
     <p class="work-type">{type}</p>
 
-    {series && <p class="work-series">Series: {series}</p>}
-    {published && <time datetime={published}>{published}</time>}
+    <!-- series がオブジェクトの場合は title を表示 -->
+    {series && typeof series === "object" && (
+      <p class="work-type">
+        関連： <a href={`/stories/${series.id}/`}>{series.title}</a>
+      </p>
+    )}
+
+    {published && <time datetime={published}>{publishedText}</time>}
   </footer>
 
   <nav class="work-nav">
@@ -34,16 +70,16 @@ const {
   </nav>
 
   <script is:inline>
-  console.log("script loaded");
+    console.log("script loaded");
 
-  function goBack() {
-    console.log("goBack called");
+    function goBack() {
+      console.log("goBack called");
 
-    if (history.length > 1) {
-      history.back();
-    } else {
-      location.href = "/works/";
+      if (history.length > 1) {
+        history.back();
+      } else {
+        location.href = "/works/";
+      }
     }
-  }
-</script>
+  </script>
 </article>

@@ -1,20 +1,30 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
----
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
+const works = await getCollection("works");
+
+// type が "illust" の作品だけ抽出
+const illustWorks = works.filter(w => w.data.type === "illust");
+---
 <BaseLayout title="Illust｜露草おこじょ堂">
   <h2>Illust</h2>
-  <p>イラストの一覧です。</p>
-
+  <p>イラストの一覧です</p>
   <div class="works-grid">
-    <!-- 作品カードをここに追加 -->
-    <article class="card work-card"> 
-        <a href="/works/oneshot/Topimage/">
-            <img src="/images/top/hero.jpg" alt="">
-            <h3>TOPページイラスト（2026/1）</h3>
-            <p class="work-type">Illust</p>
-            <span class="work-series">単発</span>
+    {illustWorks.map(work => (
+      <article class="card work-card">
+        <a href={`/works/${work.slug}/`}>
+          <img
+            src={work.data.thumbnail || "/images/common/noimage.png"}
+            alt={work.data.title}
+            loading="lazy"
+            decoding="async"
+          />
+          <h3>{work.data.title}</h3>
+          <p class="work-type">{work.data.type}</p>
+          <span class="work-series">{work.data.series?.title ?? "単発"}</span>
         </a>
-    </article>
-
+      </article>
+    ))}
+  </div>
 </BaseLayout>

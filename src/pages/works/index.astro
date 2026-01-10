@@ -1,33 +1,33 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const works = await getCollection("works");
 ---
 
 <BaseLayout title="Works">
   <h2>Works</h2>
   <p class="works-lead">
     本サイトのすべての創作物をまとめています。
-    <br>順次追加中。。。
   </p>
 
   <div class="works-grid">
-    <!-- 作品カードをここに追加 -->
-    <article class="card work-card"> 
-        <a href="/works/oneshot/Topimage/">
-            <img src="/images/top/hero.jpg" alt="">
-            <h3>TOPページイラスト（2026/1）</h3>
-            <p class="work-type">Illust</p>
-            <span class="work-series">単発</span>
-        </a>
-    </article>
-    <article class="card work-card"> 
-        <a href="/works/oneshot/trillium/">
-            <img src="" alt="">
-            <h3>知らねば見分けることも難しい</h3>
-            <p class="work-type">Novel</p>
-            <span class="work-series">単発</span>
-        </a>
-    </article>
+    {works.map((work) => (
+      <article class="card work-card">
+        <a href={`/works/${work.slug}/`}>
+          <img
+            src={work.data.thumbnail || "/images/common/noimage.png"}
+            loading="lazy"
+            decoding="async"
+          />
+          <h3>{work.data.title}</h3>
+          <p class="work-type">{work.data.type}</p>
+          <span class="work-series">
+            {work.data.series?.title ?? "単発"}
+          </span>
 
-
+        </a>
+      </article>
+    ))}
   </div>
 </BaseLayout>

@@ -1,0 +1,35 @@
+.series-description {
+  max-width: 48rem;
+  margin: 0 auto 3rem;
+}
+
+.series-description, .series-nav {
+  border-top: 1px dashed #ccc;
+  padding-top: 1.7rem;
+}
+
+.series-nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.series-nav li a {
+  text-decoration: none;
+  text-align: center;
+  font-weight: 900;
+
+  padding: 0.5rem 1.25rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.series-nav li a:hover {
+    background-color: rgba(0,0,0,.04);
+ }
+
+.series-nav li a:active {
+  background-color: rgba(0,0,0,.05);
+}

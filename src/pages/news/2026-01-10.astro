@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// ファイル名から日付を取得
+const filename = Astro.url.pathname.split("/").pop();
+const date = filename?.replace(".astro", "");
+
+export const frontmatter = {
+  title: "物語追加＆イラスト+1",
+  category: "サイト更新"
+};
+---
+
+<BaseLayout title="物語追加＆イラスト+1｜露草おこじょ堂">
+  <article class="news-article">
+    <h2>物語追加＆イラスト+1</h2>
+
+    <time datetime={date}>{date}</time>
+
+    <p>
+      <a href="/stories/">Stories</a>ページに、『フローラ荘今日も好天』という物語のあらすじ紹介ページを作りました。<br>
+      こちらはいわゆる擬人化ジャンルのお話になります。<br>
+      ゆっくり本編もとイラストを更新をしていくつもりです。（キャラクター紹介ページも作りたいなあ。）<br><br>
+      今日はその前段として、【葛】のイメージイラストを置きました。<br>
+      葛根湯や葛餅、はたまたカゴなど生活に身近な植物。秋の七草。そんな葛の花は意外と派手な色味で私は好きです。<br>
+      彼がどんな生態かはまたいずれ。
+    </p>
+
+    <p class="news-more" style="text-align: center;">
+      <a href="/stories/maison-flora/">フローラ荘今日も好天はこちらから</a>
+    </p>
+  </article>
+</BaseLayout>

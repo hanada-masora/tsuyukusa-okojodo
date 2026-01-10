@@ -1,5 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+// news ディレクトリ内の astro ファイルを取得
+const modules = import.meta.glob("./news/*.astro", { eager: true });
+
+// index.astro を除外
+const entries = Object.entries(modules).filter(
+  ([path]) => !path.endsWith("index.astro")
+);
+
+// 日付降順 → 最新2件だけ
+const latestNews = entries
+  .map(([path, mod]) => {
+    const filename = path.split("/").pop().replace(".astro", "");
+    return {
+      url: `/news/${filename}/`,
+      date: filename,
+      title: mod.frontmatter?.title ?? "お知らせ",
+    };
+  })
+  .sort((a, b) => (a.date < b.date ? 1 : -1))
+  .slice(0, 2);
 ---
 
 <BaseLayout
@@ -49,14 +70,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </section>
 
 <section class="news">
-  <h2>News</h2>
+ <h2>News</h2>
+
   <ul>
+    {latestNews.map(item => (
       <li>
-      <time datetime="2026-01-05">2026-01-05</time>
-      <a href="/news/2026-01-05/">サイトを公開しました</a>
-    </li>
+        <time datetime={item.date}>{item.date}</time>
+        <a href={item.url}>{item.title}</a>
+      </li>
+    ))}
   </ul>
-  <p><a href="/news/">⇒ 過去のお知らせ</a></p>
+  
+  <p class="news-more"><a href="/news/">⇒ 過去のお知らせ</a></p>
 </section>
   
 </BaseLayout>
